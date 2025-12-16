@@ -499,162 +499,141 @@
             50% { transform: translate(-30px, -30px) scale(1.1); }
         }
 
-        .features-grid {
+        /* Features Split Layout */
+        .features-split {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: start;
             position: relative;
             z-index: 1;
         }
 
-        .feature-card {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 24px;
-            border: 1px solid #e8ecef;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
+        .features-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
-        .feature-card.visible {
+        .feature-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid #e8ecef;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .feature-item.visible {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateX(0);
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .feature-image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        .feature-item:nth-child(1) {
+            transition-delay: 0.1s;
         }
 
-        .feature-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 16px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: scale(1);
+        .feature-item:nth-child(2) {
+            transition-delay: 0.2s;
         }
 
-        .feature-image-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(26, 77, 77, 0.1) 0%, rgba(0, 212, 170, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
+        .feature-item:nth-child(3) {
+            transition-delay: 0.3s;
         }
 
-        .feature-card:hover .feature-image {
-            transform: scale(1.1) rotate(1deg);
+        .feature-item:nth-child(4) {
+            transition-delay: 0.4s;
         }
 
-        .feature-card:hover .feature-image-wrapper::after {
-            opacity: 1;
+        .feature-item:nth-child(5) {
+            transition-delay: 0.5s;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--yellow));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .feature-item:nth-child(6) {
+            transition-delay: 0.6s;
         }
 
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 212, 170, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
+        .feature-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(26, 77, 77, 0.1);
+            border-color: var(--accent);
         }
 
-        .feature-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 70px rgba(26, 77, 77, 0.15);
-            border-color: transparent;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card:hover::after {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
+        .feature-icon-large {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 18px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            margin-top: -3rem;
-            position: relative;
-            z-index: 2;
+            font-size: 1.8rem;
             color: var(--white);
-            box-shadow: 0 8px 20px rgba(26, 77, 77, 0.2);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: scale(1) rotate(0deg);
+            box-shadow: 0 6px 20px rgba(26, 77, 77, 0.2);
+            transition: all 0.4s ease;
         }
 
-        .feature-card:hover .feature-icon {
+        .feature-item:hover .feature-icon-large {
             transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 30px rgba(26, 77, 77, 0.3);
             background: linear-gradient(135deg, var(--accent), var(--primary));
+            box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);
         }
 
-        .feature-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
             color: var(--text-dark);
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
             transition: color 0.3s ease;
-            position: relative;
-            z-index: 1;
         }
 
-        .feature-card:hover h3 {
+        .feature-item:hover .feature-text h3 {
             color: var(--primary);
         }
 
-        .feature-card p {
+        .feature-text p {
             color: var(--text-light);
-            line-height: 1.8;
-            font-size: 1rem;
-            position: relative;
-            z-index: 1;
-            transition: color 0.3s ease;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin: 0;
         }
 
-        .feature-card:hover p {
-            color: var(--text-dark);
+        .features-banner {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .banner-image-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(26, 77, 77, 0.15);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+
+        .banner-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .banner-image-wrapper:hover .banner-image {
+            transform: scale(1.05);
         }
 
         /* How It Works - Split Layout */
@@ -1988,19 +1967,21 @@
                 gap: 4rem;
             }
 
-            .features-grid,
+            .features-split {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .features-banner {
+                position: relative;
+                top: 0;
+                order: -1;
+            }
+
             .testimonials-grid,
             .revenue-cards {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
-            }
-
-            .feature-card {
-                padding: 2.5rem;
-            }
-
-            .feature-image-wrapper {
-                height: 180px;
             }
 
             .footer-main {
@@ -2116,31 +2097,45 @@
                 font-size: 2.5rem;
             }
 
-            .features-grid,
+            .features-split {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .features-content {
+                gap: 1.5rem;
+            }
+
+            .feature-item {
+                padding: 1.2rem;
+                gap: 1rem;
+            }
+
+            .feature-icon-large {
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                font-size: 1.5rem;
+            }
+
+            .feature-text h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .feature-text p {
+                font-size: 0.9rem;
+            }
+
+            .features-banner {
+                order: -1;
+            }
+
             .testimonials-grid,
             .stats-grid,
             .revenue-cards {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-            }
-
-            .feature-card {
-                padding: 2rem;
-            }
-
-            .feature-image-wrapper {
-                height: 200px;
-            }
-
-            .feature-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-                margin-top: -2.5rem;
-            }
-
-            .feature-card h3 {
-                font-size: 1.4rem;
             }
 
             .section-title {
@@ -2461,8 +2456,8 @@
                 padding: 0.5rem 1rem;
             }
 
-            .feature-card {
-                padding: 1.5rem;
+            .feature-item {
+                padding: 1rem;
             }
 
             .revenue-card {
@@ -2532,54 +2527,35 @@
                 <h2 class="section-title">Powerful Video Analytics Features</h2>
                 <p class="section-subtitle">Everything you need to elevate your pickleball court operations with cutting-edge AI technology</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-image-wrapper">
-                        <img src="C:\xampp\htdocs\court-vision-360-website\3.png" alt="Pickleball Court Video Analytics" class="feature-image">
+            <div class="features-split">
+                <div class="features-content">
+                    <div class="feature-item">
+                        <div class="feature-icon-large">📹</div>
+                        <div class="feature-text">
+                            <h3>Real-Time Game Tracking</h3>
+                            <p>Monitor every match in real-time with advanced computer vision. Track ball trajectory, player movements, and game statistics automatically.</p>
+                        </div>
                     </div>
-                    <div class="feature-icon">📹</div>
-                    <h3>Real-Time Game Tracking</h3>
-                    <p>Monitor every match in real-time with advanced computer vision. Track ball trajectory, player movements, and game statistics automatically.</p>
+                    <div class="feature-item">
+                        <div class="feature-icon-large">📊</div>
+                        <div class="feature-text">
+                            <h3>Performance Analytics</h3>
+                            <p>Deep insights into player performance with detailed statistics, heat maps, and movement analysis to help players improve their game.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon-large">🎯</div>
+                        <div class="feature-text">
+                            <h3>Shot Recognition</h3>
+                            <p>AI-powered shot detection identifies serves, volleys, smashes, and dinks automatically, providing comprehensive match breakdowns.</p>
+                        </div>
+                    </div>
+                    
                 </div>
-                <div class="feature-card">
-                    <div class="feature-image-wrapper">
-                        <img src="C:\xampp\htdocs\court-vision-360-website\5.png" alt="Analytics Dashboard" class="feature-image">
+                <div class="features-banner">
+                    <div class="banner-image-wrapper">
+                        <img src="3.png" alt="Court Vision 360 Analytics Banner" class="banner-image">
                     </div>
-                    <div class="feature-icon">📊</div>
-                    <h3>Performance Analytics</h3>
-                    <p>Deep insights into player performance with detailed statistics, heat maps, and movement analysis to help players improve their game.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-image-wrapper">
-                        <img src="C:\xampp\htdocs\court-vision-360-website\6.png" alt="Pickleball Paddle" class="feature-image">
-                    </div>
-                    <div class="feature-icon">🎯</div>
-                    <h3>Shot Recognition</h3>
-                    <p>AI-powered shot detection identifies serves, volleys, smashes, and dinks automatically, providing comprehensive match breakdowns.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-image-wrapper">
-                        <img src="C:\xampp\htdocs\court-vision-360-website\7.png" alt="Mobile App" class="feature-image">
-                    </div>
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile Dashboard</h3>
-                    <p>Access all analytics and insights from any device. View live matches, review past games, and manage your court from anywhere.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-image-wrapper">
-                        <img src="C:\xampp\htdocs\court-vision-360-website\8.png" alt="Video Replay" class="feature-image">
-                    </div>
-                    <div class="feature-icon">🔍</div>
-                    <h3>Match Replay & Analysis</h3>
-                    <p>Review any point, game, or match with instant replay. Analyze strategies, identify patterns, and learn from every play.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-image-wrapper">
-                        <img src="C:\xampp\htdocs\court-vision-360-website\9.png" alt="Pickleball Court" class="feature-image">
-                    </div>
-                    <div class="feature-icon">⚡</div>
-                    <h3>Automated Scoring</h3>
-                    <p>Never miss a point with automated score tracking. Accurate, reliable scoring that eliminates disputes and keeps games flowing.</p>
                 </div>
             </div>
         </div>
@@ -3095,10 +3071,10 @@
             });
         }, featureObserverOptions);
 
-        // Observe all feature cards
-        const featureCards = document.querySelectorAll('.feature-card');
-        featureCards.forEach(card => {
-            featureObserver.observe(card);
+        // Observe all feature items
+        const featureItems = document.querySelectorAll('.feature-item');
+        featureItems.forEach(item => {
+            featureObserver.observe(item);
         });
 
         // Intersection Observer for section header
