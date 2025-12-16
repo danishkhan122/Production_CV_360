@@ -27,6 +27,17 @@
 
         html {
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
 
         body {
@@ -35,6 +46,17 @@
             color: var(--text-dark);
             overflow-x: hidden;
             background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
         }
 
         /* Navigation Bar - Fixed at Top */
@@ -49,6 +71,22 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
 
         /* Hero Section - Split Layout */
@@ -2000,14 +2038,36 @@
 
             .navbar {
                 padding: 1rem 2rem;
-                flex-direction: column;
-                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
             }
 
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.8rem;
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem 1rem;
             }
 
             .hero {
@@ -2121,6 +2181,22 @@
 
             .form-row {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.2rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 0.9rem 1.2rem;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .container {
+                padding: 0 1rem;
             }
 
             .footer-main {
@@ -2140,6 +2216,258 @@
             .newsletter-btn {
                 width: 100%;
             }
+
+            /* Compression Section Mobile */
+            .compression-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .compression-tabs {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .compression-tab {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .compression-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .compression-product-image {
+                order: 2;
+            }
+
+            .compression-product-info {
+                order: 1;
+                padding: 0;
+            }
+
+            .compression-product-name {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .compression-product-description {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .compression-benefits,
+            .compression-cons {
+                margin-bottom: 1.5rem;
+            }
+
+            .compression-benefits h3,
+            .compression-cons h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .compression-benefits li,
+            .compression-cons li {
+                font-size: 0.9rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .compression-model {
+                order: 3;
+            }
+
+            .compression-model-image {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .compression-cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .compression-btn-shop,
+            .compression-btn-know {
+                width: 100%;
+                padding: 0.9rem 2rem;
+            }
+
+            /* How It Works Mobile */
+            .how-text h2 {
+                font-size: 2rem;
+            }
+
+            .how-text p {
+                font-size: 1rem;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .step-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .step-content p {
+                font-size: 0.95rem;
+            }
+
+            .how-visual {
+                height: 300px;
+            }
+
+            /* Stats Mobile */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .stat-item h3 {
+                font-size: 3rem;
+            }
+
+            .stat-item p {
+                font-size: 1rem;
+            }
+
+            /* Hero Mobile Improvements */
+            .hero-cta {
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .social-icons {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            /* Section Subtitle Mobile */
+            .section-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            /* CTA Section Mobile */
+            .cta-section {
+                padding: 4rem 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section p {
+                font-size: 1.1rem;
+            }
+
+            /* Footer Mobile */
+            .footer {
+                padding: 4rem 2rem 2rem;
+            }
+
+            .footer-brand h3 {
+                font-size: 1.5rem;
+            }
+
+            .footer-column h4 {
+                font-size: 1.1rem;
+            }
+
+            /* Logo Ticker Mobile */
+            .logo-ticker-item {
+                min-width: 140px;
+            }
+
+            /* Touch-friendly improvements */
+            .btn,
+            .hero-cta,
+            .compression-btn-shop,
+            .compression-btn-know,
+            .revenue-cta-button,
+            .form-submit {
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+
+            /* Better text wrapping */
+            .hero h1,
+            .section-title,
+            .compression-product-name {
+                word-wrap: break-word;
+                hyphens: auto;
+            }
+        }
+
+        /* Extra Small Devices */
+        @media (max-width: 480px) {
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .compression-product-name {
+                font-size: 1.75rem;
+            }
+
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-links a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .compression-tab {
+                font-size: 0.75rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .revenue-card {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -2147,6 +2475,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <a href="#home" class="logo">Court Vision 360</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
         <ul class="nav-links">
             <li><a href="#features" class="active">Features</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
@@ -2663,6 +2992,36 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuToggle && navLinks) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // Close menu when clicking on a link
+            const navLinksItems = navLinks.querySelectorAll('a');
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    mobileMenuToggle.textContent = '☰';
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.navbar')) {
+                    navLinks.classList.remove('active');
+                    if (mobileMenuToggle) {
+                        mobileMenuToggle.textContent = '☰';
+                    }
+                }
+            });
+        }
+
         // Video play/pause functionality
         const heroVideo = document.querySelector('.hero-video');
         const playButton = document.querySelector('.play-button');
